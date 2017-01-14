@@ -10,6 +10,8 @@ module.exports = (app) => {
   app.get('/add', auth.isAuthenticated, controllers.posts.addForm)
   app.post('/add', auth.isAuthenticated, controllers.posts.add)
   app.get('/post/:id', auth.isAuthenticated, controllers.posts.detail)
+  app.post('/post/:id/like', auth.isAuthenticated, controllers.posts.like)
+  app.post('/post/:id/dislike', auth.isAuthenticated, controllers.posts.dislike)
 
   app.get('/register', controllers.users.registerPage)
   app.post('/register', controllers.users.register)

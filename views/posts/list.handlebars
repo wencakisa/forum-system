@@ -2,7 +2,10 @@
   <h1>Latest posts: </h1>
   <ul class="list-group">
     {{#each result}}
-      <li class="list-group-item"><a href="/post/{{id}}">{{title}}</a></li>
+      <li class="list-group-item">
+        <a href="/post/{{id}}">{{title}}</a>
+          ({{views}} <span class="glyphicon glyphicon-eye-open"></span>, {{likes}} <span class="glyphicon glyphicon-thumbs-up"></span>)
+      </li>
     {{/each}}
   </ul>
 {{else}}

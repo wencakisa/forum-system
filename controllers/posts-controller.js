@@ -29,7 +29,7 @@ module.exports = {
     let id = req.params.id
 
     Post
-      .findById(id)
+      .findByIdAndUpdate(id, { $inc: { views: 1 } })
       .then(post => {
         res.render('posts/detail', { result: post })
       })
@@ -38,5 +38,18 @@ module.exports = {
         res.render('404-error')
         return
       })
+  },
+  like: (req, res) => {
+    let id = req.params.id
+
+    Post
+      .findByIdAndUpdate(id, { $inc: { likes: 1 } })
+      .then(post => {
+        res.redirect(`/post/${id}`)
+      })
+  },
+  dislike: (req, res) => {
+    // TODO: Implement
+    res.redirect('/')
   }
 }

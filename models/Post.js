@@ -3,7 +3,6 @@ const validationMessages = require('../utils/validation-messages')
 
 mongoose.Promise = global.Promise
 
-// TODO: Add validation
 let postSchema = mongoose.Schema({
   title: {
     type: String,
@@ -19,6 +18,14 @@ let postSchema = mongoose.Schema({
   postedOn: {
     type: Date,
     default: Date.now
+  },
+  views: {
+    type: Number,
+    default: 0
+  },
+  likes: {
+    type: Number,
+    default: 0
   }
 })
 

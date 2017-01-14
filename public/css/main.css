@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-#logout-form {
+#logout-form, #like-form {
   display: none;
 }
 
