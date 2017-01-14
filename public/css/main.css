@@ -1,0 +1,20 @@
+.btn.btn-lg.btn-success {
+  width: 66vw;
+}
+
+#globalError {
+  color: orangered;
+  text-align: center;
+}
+
+#logout-form {
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.center form {
+  display: inline-block;
+}

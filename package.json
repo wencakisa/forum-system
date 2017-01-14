@@ -1,0 +1,23 @@
+{
+  "name": "forum-system",
+  "version": "1.0.0",
+  "description": "Forum system from the Express.js SoftUni course workshop",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wencakisa/forum-system.git"
+  },
+  "author": "Vencislav Tasheff",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.15.2",
+    "cookie-parser": "1.4.3",
+    "express": "4.14.0",
+    "express-handlebars": "3.0.0",
+    "express-session": "1.14.2",
+    "mongoose": "4.7.6",
+    "morgan": "1.7.0",
+    "passport": "0.3.2",
+    "passport-local": "1.0.0"
+  }
+}
