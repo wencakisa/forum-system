@@ -8,8 +8,6 @@ module.exports = {
   },
   isInRole: (role) => {
     return (req, res, next) => {
-      console.log(req.user.roles.indexOf(role))
-
       if (req.user && req.user.roles.indexOf(role) > -1) {
         next()
       } else {
