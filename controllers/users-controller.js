@@ -24,12 +24,12 @@ module.exports = {
 
     if (user.password === '') {
       user.globalError = 'Password is required.'
-      res.render('users/register', user)
+      res.render('users/register', { result: user })
       return
     }
     if (user.password !== user.confirmPassword) {
       user.globalError = 'Passwords do not match.'
-      res.render('users/register', user)
+      res.render('users/register', { result: user })
       return
     }
 
@@ -75,7 +75,26 @@ module.exports = {
     User
       .findOne({ username: username })
       .then(user => {
-        res.render('users/profile', user)
+        res.render('users/profile', { result: user })
+      })
+  },
+  editProfileForm: (req, res) => {
+    let username = req.params.username
+
+    User
+      .findOne({ username: username })
+      .then(user => {
+        res.render('users/edit', { result: user })
+      })
+  },
+  editProfile: (req, res) => {
+    let username = req.params.username
+    let body = req.body
+
+    User
+      .findOneAndUpdate({ username: username }, body)
+      .then(user => {
+        res.redirect(`/profile/${username}`)
       })
   }
 }

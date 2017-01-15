@@ -3,7 +3,7 @@ module.exports = {
     if (req.isAuthenticated()) {
       next()
     } else {
-      res.redirect('/login')
+      res.status(401).redirect('/login')
     }
   },
   isInRole: (role) => {
@@ -13,7 +13,7 @@ module.exports = {
       if (req.user && req.user.roles.indexOf(role) > -1) {
         next()
       } else {
-        res.redirect('/login')
+        res.status(401).redirect('/login')
       }
     }
   }

@@ -18,7 +18,7 @@ module.exports = {
     Post
       .create(body)
       .then(post => {
-        res.redirect('/list')
+        res.redirect('/posts')
       })
       .catch(err => {
         res.render('posts/add', { globalError: err })
@@ -46,7 +46,7 @@ module.exports = {
     Post
       .findByIdAndUpdate(id, { $inc: { likes: 1 } })
       .then(post => {
-        res.redirect(`/post/${id}`)
+        res.redirect(`/posts/${id}`)
       })
   },
   dislike: (req, res) => {
@@ -55,7 +55,7 @@ module.exports = {
     Post
       .findByIdAndUpdate(id, { $dec: { likes: 1 } })
       .then(post => {
-        res.redirect(`/post/${id}`)
+        res.redirect(`/posts/${id}`)
       })
   },
   editForm: (req, res) => {
@@ -74,7 +74,7 @@ module.exports = {
     Post
       .findByIdAndUpdate(id, body)
       .then(post => {
-        res.redirect(`/post/${id}`)
+        res.redirect(`/posts/${id}`)
       })
   },
   delete: (req, res) => {
@@ -83,7 +83,7 @@ module.exports = {
     Post
       .findByIdAndRemove(id)
       .then(post => {
-        res.redirect('/list')
+        res.redirect('/posts')
       })
   }
 }
