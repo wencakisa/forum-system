@@ -22,7 +22,8 @@ let userSchema = mongoose.Schema({
   },
   salt: String,
   hashedPass: String,
-  roles: [String]
+  roles: [String],
+  pictureUrl: String
 })
 
 userSchema.method({
@@ -50,7 +51,8 @@ User
         lastName: 'Adminov',
         salt: salt,
         hashedPass: hashedPass,
-        roles: ['Admin']
+        roles: ['Admin'],
+        pictureUrl: 'https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-512.png'
       })
     }
   })
