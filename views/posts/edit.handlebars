@@ -1,5 +1,5 @@
 <div class="center">
-  <form action="/post/{{result.id}}/edit" method="post" class="form-horizontal">
+  <form action="/posts/{{result.id}}/edit" method="post" class="form-horizontal">
     <div class="form-group">
       <input type="text" name="title" id="title" class="form-control" placeholder="Title" value={{result.title}}>
     </div>
@@ -9,7 +9,7 @@
     </div>
 
     <div class="form-group">
-      <input type="submit" value="Edit" class="btn btn-lg btn-success">
+      <input type="submit" value="Edit" class="btn btn-lg btn-success" id="submit-button">
     </div>
   </form>
 </div>

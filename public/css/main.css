@@ -1,5 +1,5 @@
-.btn.btn-lg.btn-success {
-  width: 66vw;
+#submit-button {
+  width: 60vw;
 }
 
 #globalError {
@@ -17,4 +17,19 @@
 
 .center form {
   display: inline-block;
+}
+
+#profile-image {
+  max-width: 70vw;
+  max-height: 50vh;
+}
+
+#full-name {
+  font-weight: bold;
+}
+
+#edit-button {
+  width: 20vw;
+  font-size: 25px;
+  font-weight: bold;
 }
