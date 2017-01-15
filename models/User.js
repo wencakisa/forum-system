@@ -28,10 +28,7 @@ let userSchema = mongoose.Schema({
 userSchema.method({
   authenticate: function (password) {
     return (encryption.generateHashedPassword(this.salt, password) === this.hashedPass)
-  }
-})
-
-userSchema.method({
+  },
   isAdmin: function () {
     return this.roles.indexOf('Admin') > -1
   }
