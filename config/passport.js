@@ -4,29 +4,29 @@ const User = require('../models/User')
 
 module.exports = () => {
   let authStrategy = new LocalPassport(
-    (username, password, done) => {
+    (username, password, next) => {
       User
         .findOne({ username: username })
         .then(user => {
-          if (!user) return done(null, false)
-          if (!user.authenticate(password)) return done(null, false)
+          if (!user) return next(null, false)
+          if (!user.authenticate(password)) return next(null, false)
 
-          return done(null, user)
+          return next(null, user)
         })
-        .catch(err => done(err, false))
+        .catch(err => next(err, false))
     }
   )
   passport.use(authStrategy)
 
-  passport.serializeUser((user, done) => {
-    if (user) return done(null, user._id)
+  passport.serializeUser((user, next) => {
+    if (user) return next(null, user._id)
   })
 
-  passport.deserializeUser((id, done) => {
+  passport.deserializeUser((id, next) => {
     User
       .findById(id)
       .then(user => {
-        return done(null, user || false)
+        return next(null, user || false)
       })
   })
 }
