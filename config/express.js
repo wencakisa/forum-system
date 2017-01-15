@@ -7,6 +7,8 @@ const session = require('express-session')
 const morgan = require('morgan')
 
 module.exports = (app) => {
+  app.use('/static', express.static('./public'))
+
   app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
   app.set('view engine', 'handlebars')
 
@@ -17,10 +19,12 @@ module.exports = (app) => {
     resave: false,
     saveUninitialized: false
   }))
+
   app.use(passport.initialize())
   app.use(passport.session())
-  app.use('/static', express.static('./public'))
+
   app.use(morgan('combined'))
+
   app.use((req, res, next) => {
     if (req.user) {
       res.locals.currentUser = req.user
