@@ -1,3 +1,7 @@
-<h1>{{username}}</h1>
+<div class="center">
+  <img src="{{result.pictureUrl}}" alt="Profile picture" id="profile-image" class="img-circle">
+  <h1 id="full-name">{{result.firstName}} {{result.lastName}}</h1>
+  <h2><i>{{result.username}}</i></h2>
 
-<h2>{{firstName}} {{lastName}}</h2>
+  <a href="/profile/{{result.username}}/edit" class="btn btn-md btn-warning" id="edit-button">Edit profile</a>
+</div>
