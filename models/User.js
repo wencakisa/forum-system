@@ -21,7 +21,8 @@ let userSchema = mongoose.Schema({
     maxlength: [20, validationMessages.maxLengthValidationMessage]
   },
   salt: String,
-  hashedPass: String
+  hashedPass: String,
+  roles: [String]
 })
 
 userSchema.method({
@@ -30,4 +31,31 @@ userSchema.method({
   }
 })
 
-module.exports = mongoose.model('User', userSchema)
+userSchema.method({
+  isAdmin: function () {
+    return this.roles.indexOf('Admin') > -1
+  }
+})
+
+let User = mongoose.model('User', userSchema)
+
+// Seeding an admin
+User
+  .findOne({ username: 'Admin' })
+  .then(user => {
+    if (!user) {
+      let salt = encryption.generateSalt()
+      let hashedPass = encryption.generateHashedPassword(salt, '123456')
+
+      User.create({
+        username: 'Admin',
+        firstName: 'Admin',
+        lastName: 'Adminov',
+        salt: salt,
+        hashedPass: hashedPass,
+        roles: ['Admin']
+      })
+    }
+  })
+
+module.exports = User

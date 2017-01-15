@@ -31,6 +31,7 @@ module.exports = {
     Post
       .findByIdAndUpdate(id, { $inc: { views: 1 } })
       .then(post => {
+        post.canBeUpdated = req.user.isAdmin() || false
         res.render('posts/detail', { result: post })
       })
       .catch(err => {
@@ -49,7 +50,40 @@ module.exports = {
       })
   },
   dislike: (req, res) => {
-    // TODO: Implement
-    res.redirect('/')
+    let id = req.params.id
+
+    Post
+      .findByIdAndUpdate(id, { $dec: { likes: 1 } })
+      .then(post => {
+        res.redirect(`/post/${id}`)
+      })
+  },
+  editForm: (req, res) => {
+    let id = req.params.id
+
+    Post
+      .findById(id)
+      .then(post => {
+        res.render('posts/edit', { result: post })
+      })
+  },
+  edit: (req, res) => {
+    let id = req.params.id
+    let body = req.body
+
+    Post
+      .findByIdAndUpdate(id, body)
+      .then(post => {
+        res.redirect(`/post/${id}`)
+      })
+  },
+  delete: (req, res) => {
+    let id = req.params.id
+
+    Post
+      .findByIdAndRemove(id)
+      .then(post => {
+        res.redirect('/list')
+      })
   }
 }

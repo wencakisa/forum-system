@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-#logout-form, #like-form {
+#logout-form, #like-form, #delete-post-form {
   display: none;
 }
 

@@ -4,11 +4,15 @@
 
 <h3>
   {{result.views}} <span class="glyphicon glyphicon-eye-open"></span>
-</h3>
-<h3>
   {{result.likes}}
   <form action="/post/{{result.id}}/like" method="post" id="like-form"></form>
   <a href="javascript:document.getElementById('like-form').submit()">
     <span class="glyphicon glyphicon-thumbs-up"></span>
   </a>
 </h3>
+
+{{#if result.canBeUpdated}}
+<a href="/post/{{result.id}}/edit" class="btn btn-md btn-warning">Edit</a>
+<form action="/post/{{result.id}}/delete" method="post" id="delete-post-form"></form>
+<a href="javascript:document.getElementById('delete-post-form').submit()" class="btn btn-md btn-danger">Delete</a>
+{{/if}}
