@@ -1,0 +1,10 @@
+{{#if result}}
+  <h1>All categories: </h1>
+  <ul class="list-group">
+    {{#each result}}
+      <li class="list-group-item">{{name}}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <h1>No categories available.</h1>
+{{/if}}

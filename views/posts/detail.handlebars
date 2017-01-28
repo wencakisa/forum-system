@@ -1,7 +1,16 @@
 <h2>{{result.title}}</h2>
 <p>{{result.description}}</p>
 <p>Posted on {{result.postedOn}}</p>
-
+{{#if result.categories}}
+  <ul class="list-group">
+    Categories:
+    {{#each result.categories}}
+      <li class="list-group-item">{{name}}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>This post has no categories.</p>
+{{/if}}
 <h3>
   {{result.views}} <span class="glyphicon glyphicon-eye-open"></span>
   {{result.likes}}
@@ -11,7 +20,7 @@
   </a>
 </h3>
 
-{{#if result.canBeUpdated}}
+{{#if currentUser.isAdmin}}
   <a href="/posts/{{result.id}}/edit" class="btn btn-md btn-warning">Edit</a>
   <form action="/posts/{{result.id}}/delete" method="post" id="delete-post-form"></form>
   <a href="javascript:alert('Are you sure?'); document.getElementById('delete-post-form').submit()" class="btn btn-md btn-danger">Delete</a>

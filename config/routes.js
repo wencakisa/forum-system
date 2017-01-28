@@ -29,5 +29,15 @@ module.exports = (app) => {
 
   app.use('/posts', postsRouter)
 
+  let categoriesRouter = Router()
+
+  categoriesRouter
+    .get('/', auth.isInRole('Admin'), controllers.categories.list)
+    .get('/add', auth.isInRole('Admin'), controllers.categories.addForm)
+    .post('/add', auth.isInRole('Admin'), controllers.categories.add)
+    .post('/:id/delete', auth.isInRole('Admin'), controllers.categories.delete)
+
+  app.use('/categories', categoriesRouter)
+
   app.all('*', controllers.error.notFound)
 }

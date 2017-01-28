@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const validationMessages = require('../utils/validation-messages')
+const Category = require('./Category')
 
 mongoose.Promise = global.Promise
 
@@ -26,7 +27,8 @@ let postSchema = mongoose.Schema({
   likes: {
     type: Number,
     default: 0
-  }
+  },
+  categories: [Category.schema]
 })
 
 module.exports = mongoose.model('Post', postSchema)

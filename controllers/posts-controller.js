@@ -1,4 +1,5 @@
 let Post = require('../models/Post')
+let Category = require('../models/Category')
 
 module.exports = {
   list: (req, res) => {
@@ -10,10 +11,15 @@ module.exports = {
       })
   },
   addForm: (req, res) => {
-    res.render('posts/add')
+    Category
+      .find({})
+      .then(categories => {
+        res.render('posts/add', { categories: categories })
+      })
   },
   add: (req, res) => {
     let body = req.body
+    console.log(body)
 
     Post
       .create(body)
@@ -31,7 +37,6 @@ module.exports = {
     Post
       .findByIdAndUpdate(id, { $inc: { views: 1 } })
       .then(post => {
-        post.canBeUpdated = req.user.isAdmin() || false
         res.render('posts/detail', { result: post })
       })
       .catch(err => {
